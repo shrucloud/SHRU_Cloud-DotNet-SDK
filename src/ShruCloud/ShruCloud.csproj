@@ -1,0 +1,47 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>netstandard2.0;net8.0</TargetFrameworks>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <RootNamespace>ShruCloud</RootNamespace>
+    <AssemblyName>ShruCloud</AssemblyName>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <Deterministic>true</Deterministic>
+    <ContinuousIntegrationBuild Condition="'$(GITHUB_ACTIONS)' == 'true'">true</ContinuousIntegrationBuild>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="$([MSBuild]::IsTargetFrameworkCompatible('$(TargetFramework)', 'net8.0'))">
+    <IsAotCompatible>true</IsAotCompatible>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <PackageId>ShruCloud.Sdk</PackageId>
+    <Version>1.0.0</Version>
+    <Authors>SHRU Cloud</Authors>
+    <Company>S-SERVER</Company>
+    <Product>SHRU Cloud .NET SDK</Product>
+    <Description>Official .NET client for the SHRU Cloud API: syncs a supplier's catalog, places orders and checks their status over the HMAC-signed SHRU protocol.</Description>
+    <Copyright>Copyright (c) 2026 S-SERVER / SHRU Cloud</Copyright>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/shrucloud/SHRU_Cloud-DotNet-SDK</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/shrucloud/SHRU_Cloud-DotNet-SDK</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>shru;shrucloud;s-server;api;sdk;hmac;imei;unlock</PackageTags>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+  </PropertyGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
+    <PackageReference Include="System.Text.Json" Version="10.0.14" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\README.md" Pack="true" PackagePath="\" Visible="false" />
+    <InternalsVisibleTo Include="ShruCloud.Tests" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,40 @@
+name: Release package
+
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: read
+
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-dotnet@a98b56852c35b8e3190ac28c8c2271da59106c68 # v6.0.0
+        with:
+          dotnet-version: |
+            8.0.x
+            10.0.x
+      - name: Check the release tag matches the package version
+        env:
+          TAG: ${{ github.event.release.tag_name }}
+        run: |
+          version="$(dotnet msbuild src/ShruCloud/ShruCloud.csproj -getProperty:Version)"
+          if [ "$TAG" != "v$version" ]; then
+            echo "Release tag $TAG does not match the package version $version" >&2
+            exit 1
+          fi
+      - run: dotnet test --project tests/ShruCloud.Tests -c Release
+      - run: dotnet test --project tests/ShruCloud.Tests -c Release -p:SdkTarget=netstandard2.0
+      - run: dotnet pack src/ShruCloud/ShruCloud.csproj -c Release -o artifacts
+      - name: Attach the package to the release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ github.event.release.tag_name }}
+        run: gh release upload "$TAG" artifacts/*.nupkg artifacts/*.snupkg --repo "$GITHUB_REPOSITORY" --clobber

@@ -1,0 +1,34 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShruCloud", "src\ShruCloud\ShruCloud.csproj", "{F6310511-F32B-4861-94A9-B852E6AA4D2B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShruCloud.Tests", "tests\ShruCloud.Tests\ShruCloud.Tests.csproj", "{FD46A8CA-E59B-4747-8E04-4CC908AF063D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShruCloud.Examples", "examples\ShruCloud.Examples\ShruCloud.Examples.csproj", "{C14E116A-BABE-47F0-AD48-5EA9411B4330}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F6310511-F32B-4861-94A9-B852E6AA4D2B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F6310511-F32B-4861-94A9-B852E6AA4D2B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F6310511-F32B-4861-94A9-B852E6AA4D2B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F6310511-F32B-4861-94A9-B852E6AA4D2B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FD46A8CA-E59B-4747-8E04-4CC908AF063D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FD46A8CA-E59B-4747-8E04-4CC908AF063D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FD46A8CA-E59B-4747-8E04-4CC908AF063D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FD46A8CA-E59B-4747-8E04-4CC908AF063D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C14E116A-BABE-47F0-AD48-5EA9411B4330}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C14E116A-BABE-47F0-AD48-5EA9411B4330}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C14E116A-BABE-47F0-AD48-5EA9411B4330}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C14E116A-BABE-47F0-AD48-5EA9411B4330}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

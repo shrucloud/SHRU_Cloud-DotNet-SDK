@@ -1,0 +1,31 @@
+name: Tests
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        build: ["net8.0", "netstandard2.0"]
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-dotnet@a98b56852c35b8e3190ac28c8c2271da59106c68 # v6.0.0
+        with:
+          dotnet-version: |
+            8.0.x
+            10.0.x
+      - run: dotnet build ShruCloud.sln -c Release
+      - name: Test on .NET 8 and .NET 10
+        env:
+          SDK_TARGET: ${{ matrix.build }}
+        run: dotnet test --project tests/ShruCloud.Tests -c Release -p:SdkTarget="$SDK_TARGET"
+      - run: dotnet pack src/ShruCloud/ShruCloud.csproj -c Release -o artifacts
